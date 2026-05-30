@@ -3,7 +3,7 @@ import { RestaurantConfig } from '../models/restaurant-config.model';
 export const BBQNIGHTS_CONFIG: RestaurantConfig = {
   id: 'bbqnights',
   name: 'BBQ Nights',
-  logo: 'assets/logos/bbqnights.png',
+  logo: 'assets/images/bbqnights-hero',
   theme: {
     primaryColor: '#3d0c02',
     secondaryColor: '#d4a373',
@@ -23,7 +23,7 @@ export const BBQNIGHTS_CONFIG: RestaurantConfig = {
   hero: {
     title: 'Smoky & Delicious BBQ',
     subtitle: 'Slow-cooked meats with our signature sauce.',
-    backgroundImage: 'assets/images/bbqnights-hero.jpg',
+    backgroundImage: 'assets/images/bbqnights-hero',
     ctaText: 'Reserve a Table'
   },
   menu: {

@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { ConfigService } from './config.service';
-import { AQUAFAIR_CONFIG } from '../../clients/aquafair.config';
+import { BBQNIGHTS_CONFIG } from '../../clients/bbqnights.config';
 
 describe('ConfigService', () => {
   let service: ConfigService;
@@ -14,12 +14,12 @@ describe('ConfigService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should have default config as AquaFair', () => {
-    expect(service.config.id).toBe('aquafair');
+  it('should have default config as BBQNights', () => {
+    expect(service.config.id).toBe('bbqnights');
   });
 
   it('should update config', () => {
-    service.setConfig({ ...AQUAFAIR_CONFIG, id: 'test' });
+    service.setConfig({ ...BBQNIGHTS_CONFIG, id: 'test' });
     expect(service.config.id).toBe('test');
   });
 });
