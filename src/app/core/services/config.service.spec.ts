@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { ConfigService } from './config.service';
-import { BBQNIGHTS_CONFIG } from '../../clients/bbqnights.config';
+import { BURGER_CONFIG } from '../../clients/burger.config';
+import { PIZZA_CONFIG } from '../../clients/pizza.config';
 
 describe('ConfigService', () => {
   let service: ConfigService;
@@ -14,12 +15,18 @@ describe('ConfigService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should have default config as BBQNights', () => {
-    expect(service.config.id).toBe('bbqnights');
+  it('should have default config as Pizza Paradise', () => {
+    expect(service.config.id).toBe('pizza-paradise');
   });
 
   it('should update config', () => {
-    service.setConfig({ ...BBQNIGHTS_CONFIG, id: 'test' });
+    service.setConfig({ ...BURGER_CONFIG, id: 'test' });
     expect(service.config.id).toBe('test');
+  });
+
+  it('should load restaurant from registry', () => {
+    service.loadRestaurant('burger-bastion');
+    expect(service.config.id).toBe('burger-bastion');
+    expect(service.config.name).toBe('Burger Bastion');
   });
 });
