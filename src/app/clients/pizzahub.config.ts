@@ -40,5 +40,6 @@ export const PIZZAHUB_CONFIG: RestaurantConfig = {
     showHero: true,
     showMenu: true,
     showContact: true
-  }
+  },
+  about: 'At PizzaHub, we believe in the power of fresh ingredients and traditional techniques. Since our opening in 2005, we have been serving the finest hand-tossed pizzas in the city. Our dough is prepared fresh daily, and our sauces are made from vine-ripened tomatoes and a secret blend of herbs.'
 };

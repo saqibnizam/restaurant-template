@@ -39,5 +39,6 @@ export const BBQNIGHTS_CONFIG: RestaurantConfig = {
     showHero: true,
     showMenu: true,
     showContact: true
-  }
+  },
+  about: 'Founded in 1995, BBQ Nights has been a staple of Smoky Valley. We pride ourselves on our slow-cooking methods and secret signature sauce that has been passed down through generations. Our meats are sourced from local farmers to ensure the highest quality and freshness.'
 };

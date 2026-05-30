@@ -14,8 +14,8 @@ describe('ConfigService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should have default config as BBQNights', () => {
-    expect(service.config.id).toBe('bbqnights');
+  it('should have default config as AquaFair', () => {
+    expect(service.config.id).toBe('aquafair');
   });
 
   it('should update config', () => {

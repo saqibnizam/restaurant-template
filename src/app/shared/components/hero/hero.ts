@@ -7,17 +7,25 @@ import { ConfigService } from '../../../core/services/config.service';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <section id="home" class="hero-section d-flex align-items-center text-center text-white"
-      [style.background-image]="'linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(' + configService.config.hero.backgroundImage + ')'">
-      <div class="container">
-        <h1 class="display-3 fw-bold mb-4 animate__animated animate__fadeInDown">{{ configService.config.hero.title }}</h1>
-        <p class="lead mb-5 animate__animated animate__fadeInUp">{{ configService.config.hero.subtitle }}</p>
-        <a href="#menu" class="btn btn-lg px-5 py-3 shadow"
-           [style.background-color]="configService.config.theme.primaryColor"
-           [style.border-color]="configService.config.theme.primaryColor"
-           style="color: white;">
-          {{ configService.config.hero.ctaText }}
-        </a>
+    <section id="home" class="hero-section d-flex align-items-center text-center text-white position-relative overflow-hidden">
+      <div class="hero-overlay position-absolute w-100 h-100" [style.background-image]="'url(' + configService.config.hero.backgroundImage + ')'"></div>
+      <div class="hero-mask position-absolute w-100 h-100" style="background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 100%);"></div>
+      <div class="container position-relative z-1">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <h1 class="display-1 fw-bold mb-4 animate__animated animate__fadeInDown text-uppercase tracking-wider">{{ configService.config.hero.title }}</h1>
+            <p class="lead mb-5 animate__animated animate__fadeInUp fs-3 opacity-90">{{ configService.config.hero.subtitle }}</p>
+            <div class="d-flex justify-content-center gap-3 animate__animated animate__fadeInUp animate__delay-1s">
+              <a href="#menu" class="btn btn-primary btn-lg px-5 py-3 shadow-lg border-0 rounded-pill"
+                 [style.background-color]="configService.config.theme.primaryColor">
+                {{ configService.config.hero.ctaText }}
+              </a>
+              <a href="#about" class="btn btn-outline-light btn-lg px-5 py-3 rounded-pill">
+                Our Story
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   `,

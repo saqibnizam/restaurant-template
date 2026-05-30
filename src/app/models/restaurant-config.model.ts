@@ -57,4 +57,5 @@ export interface RestaurantConfig {
   hero: HeroConfig;
   menu: MenuConfig;
   features: FeatureFlags;
+  about: string;
 }
