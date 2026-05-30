@@ -39,7 +39,6 @@ import { ThemeService } from '../../core/services/theme.service';
 
       <!-- Theme Switcher for Demo Purposes -->
       <div class="theme-switcher position-fixed bottom-0 start-0 m-3 p-2 bg-white rounded shadow-lg d-flex gap-2" style="z-index: 1050;">
-        <button class="btn btn-sm btn-outline-primary" (click)="switchConfig('aquafair')">AquaFair</button>
         <button class="btn btn-sm btn-outline-danger" (click)="switchConfig('pizzahub')">PizzaHub</button>
         <button class="btn btn-sm btn-outline-dark" (click)="switchConfig('bbqnights')">BBQNights</button>
       </div>
@@ -71,9 +70,7 @@ export class MainLayoutComponent implements OnInit {
   }
 
   switchConfig(restaurantId: string) {
-    if (restaurantId === 'aquafair') {
-      import('../../clients/aquafair.config').then(m => this.configService.setConfig(m.AQUAFAIR_CONFIG));
-    } else if (restaurantId === 'pizzahub') {
+    if (restaurantId === 'pizzahub') {
       import('../../clients/pizzahub.config').then(m => this.configService.setConfig(m.PIZZAHUB_CONFIG));
     } else if (restaurantId === 'bbqnights') {
       import('../../clients/bbqnights.config').then(m => this.configService.setConfig(m.BBQNIGHTS_CONFIG));
