@@ -19,6 +19,7 @@ import { ConfigService } from '../../../core/services/config.service';
               <a *ngIf="configService.config.social.facebook" [href]="configService.config.social.facebook" class="text-white fs-4 transition-hover"><i class="bi bi-facebook"></i></a>
               <a *ngIf="configService.config.social.instagram" [href]="configService.config.social.instagram" class="text-white fs-4 transition-hover"><i class="bi bi-instagram"></i></a>
               <a *ngIf="configService.config.social.twitter" [href]="configService.config.social.twitter" class="text-white fs-4 transition-hover"><i class="bi bi-twitter"></i></a>
+              <a *ngIf="configService.config.social.linkedin" [href]="configService.config.social.linkedin" class="text-white fs-4 transition-hover"><i class="bi bi-linkedin"></i></a>
             </div>
           </div>
           <div class="col-lg-2 col-md-6">
@@ -32,7 +33,10 @@ import { ConfigService } from '../../../core/services/config.service';
           </div>
           <div class="col-lg-3 col-md-6">
             <h5 class="fw-bold mb-4">Opening Hours</h5>
-            <p class="opacity-75 mb-0">{{ configService.config.contact.openingHours }}</p>
+            <div *ngFor="let hour of configService.config.openingHours" class="small opacity-75 mb-1 d-flex justify-content-between">
+              <span>{{ hour.day }}</span>
+              <span>{{ hour.hours }}</span>
+            </div>
           </div>
           <div class="col-lg-3 col-md-6">
             <h5 class="fw-bold mb-4">Newsletter</h5>

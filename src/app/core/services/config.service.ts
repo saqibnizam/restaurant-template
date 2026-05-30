@@ -8,14 +8,38 @@ import { RESTAURANT_REGISTRY, DEFAULT_RESTAURANT_ID } from '../../clients/regist
 export class ConfigService {
   private configSignal = signal<RestaurantConfig>(RESTAURANT_REGISTRY[DEFAULT_RESTAURANT_ID]);
 
+  constructor() {
+    this.detectClient();
+  }
+
+  private detectClient() {
+    if (typeof window !== 'undefined') {
+      const hostname = window.location.hostname;
+      // Multi-tenant logic: Map hostnames to restaurant IDs
+      // Example: 'pizza.myapp.com' -> 'pizza-paradise'
+      const clientMap: Record<string, string> = {
+        'pizza.local': 'pizza-paradise',
+        'burger.local': 'burger-bastion',
+        'coffee.local': 'bean-haven',
+        'moon.local': 'moon-platters'
+      };
+
+      const clientId = clientMap[hostname];
+      if (clientId && RESTAURANT_REGISTRY[clientId]) {
+        this.loadRestaurant(clientId);
+      }
+    }
+  }
+
   get config() {
     return this.configSignal();
   }
 
   get availableRestaurants() {
-    return Object.keys(RESTAURANT_REGISTRY).map(key => ({
-      id: key,
-      name: RESTAURANT_REGISTRY[key].name
+    return Object.values(RESTAURANT_REGISTRY).map(config => ({
+      id: config.id,
+      name: config.name,
+      businessType: config.businessType
     }));
   }
 

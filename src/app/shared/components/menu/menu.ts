@@ -16,16 +16,26 @@ import { ConfigService } from '../../../core/services/config.service';
           <div class="row g-4">
             <div class="col-lg-4 col-md-6" *ngFor="let item of getItemsByCategory(category)">
               <div class="card h-100 border-0 shadow-sm transition-hover overflow-hidden">
-                <div class="ratio ratio-16x9" *ngIf="item.image">
-                   <img [src]="item.image" class="card-img-top object-fit-cover" [alt]="item.name">
+                <div class="ratio ratio-1x1" *ngIf="item.image">
+                   <img [src]="item.image" class="card-img-top object-fit-cover" [alt]="item.name" loading="lazy">
                 </div>
                 <div class="card-body d-flex flex-column">
                   <div class="d-flex justify-content-between align-items-start mb-2">
                     <h5 class="card-title fw-bold mb-0">{{ item.name }}</h5>
-                    <span class="fw-bold" [style.color]="configService.config.theme.primaryColor">{{ item.price }}</span>
+                    <span class="fw-bold" *ngIf="item.price" [style.color]="configService.config.theme.primaryColor">{{ item.price }}</span>
                   </div>
                   <p class="card-text text-muted small flex-grow-1">{{ item.description }}</p>
-                  <button class="btn btn-sm mt-3 align-self-start" [style.background-color]="configService.config.theme.primaryColor" style="color: white">Order Now</button>
+
+                  <div class="variants mt-2 mb-3" *ngIf="item.variants?.length">
+                    <div *ngFor="let variant of item.variants" class="d-flex justify-content-between small text-muted border-bottom py-1">
+                      <span>{{ variant.label }}</span>
+                      <span class="fw-bold" [style.color]="configService.config.theme.primaryColor">{{ variant.price }}</span>
+                    </div>
+                  </div>
+
+                  <button class="btn btn-sm mt-auto align-self-start" [style.background-color]="configService.config.theme.primaryColor" style="color: white">
+                    {{ configService.config.menu.ctaText || 'Order Now' }}
+                  </button>
                 </div>
               </div>
             </div>

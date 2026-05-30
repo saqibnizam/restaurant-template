@@ -7,18 +7,18 @@ import { ConfigService } from '../../../core/services/config.service';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <section id="gallery" class="py-5 bg-light">
+    <section id="gallery" class="py-5" [style.background-color]="configService.config.theme.backgroundColor">
       <div class="container py-lg-5 text-center">
-        <h6 class="text-uppercase fw-bold mb-3 tracking-widest" [style.color]="configService.config.theme.primaryColor">Visual Feast</h6>
-        <h2 class="display-4 fw-bold mb-5">Our Culinary Gallery</h2>
+        <h6 class="text-uppercase fw-bold mb-3 tracking-widest" [style.color]="configService.config.theme.primaryColor">Visual Journey</h6>
+        <h2 class="display-4 fw-bold mb-5" [style.color]="configService.config.theme.textColor">Our Gallery</h2>
         <div class="row g-4">
-          <div class="col-lg-4 col-md-6" *ngFor="let i of [1,2,3,4,5,6]">
+          <div class="col-lg-4 col-md-6" *ngFor="let image of configService.config.gallery">
             <div class="gallery-item overflow-hidden rounded-4 shadow-sm position-relative">
-               <div class="ratio ratio-4x3">
-                 <img [src]="'https://picsum.photos/seed/' + configService.config.id + i + '/800/600'" class="img-fluid object-fit-cover" alt="Gallery image">
+               <div class="ratio ratio-1x1">
+                 <img [src]="image" class="img-fluid object-fit-cover" alt="Gallery image" loading="lazy">
                </div>
                <div class="gallery-overlay position-absolute w-100 h-100 d-flex align-items-center justify-content-center opacity-0 transition-all">
-                  <i class="bi bi-search text-white fs-1"></i>
+                  <i class="bi bi-zoom-in text-white fs-1"></i>
                </div>
             </div>
           </div>

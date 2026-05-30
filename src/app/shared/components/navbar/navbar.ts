@@ -18,20 +18,8 @@ import { ConfigService } from '../../../core/services/config.service';
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto align-items-center">
-            <li class="nav-item" *ngIf="configService.config.features.showHero">
-              <a class="nav-link px-3" href="#home">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link px-3" href="#about">About</a>
-            </li>
-            <li class="nav-item" *ngIf="configService.config.features.showMenu">
-              <a class="nav-link px-3" href="#menu">Menu</a>
-            </li>
-            <li class="nav-item" *ngIf="configService.config.features.showGallery">
-              <a class="nav-link px-3" href="#gallery">Gallery</a>
-            </li>
-            <li class="nav-item" *ngIf="configService.config.features.showContact">
-              <a class="nav-link px-3" href="#contact">Contact</a>
+            <li class="nav-item" *ngFor="let section of visibleSections">
+              <a class="nav-link px-3" [href]="'#' + section.type.toLowerCase()">{{ section.type }}</a>
             </li>
             <li class="nav-item ms-lg-3">
               <a href="#contact" class="btn btn-sm rounded-pill px-4 py-2 text-white shadow-sm" [style.background-color]="configService.config.theme.primaryColor">Reserve Now</a>
@@ -59,4 +47,11 @@ import { ConfigService } from '../../../core/services/config.service';
 })
 export class NavbarComponent {
   configService = inject(ConfigService);
+
+  get visibleSections() {
+    const mainSections = ['Hero', 'About', 'Menu', 'Gallery', 'Contact'];
+    return this.configService.config.sections
+      .filter(s => s.enabled && mainSections.includes(s.type))
+      .sort((a, b) => a.order - b.order);
+  }
 }
